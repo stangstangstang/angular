@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ng-if</title>
+</head>
+<body ng-app>
+添加 HTML:
+<!--使用ng-init始化属性myVar，值为false-->
+<input type="checkbox" ng-model="myVar" ng-init="myVar=false">
+<div ng-if="myVar">
+    <h1>我来了</h1>
+</div>
+</div>
+<script src="lib/angular.js"></script>
+</body>
+</html>
