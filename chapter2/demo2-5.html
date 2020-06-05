@@ -1,0 +1,31 @@
+<!doctype html>
+  <html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>模块间的依赖</title>
+  </head>
+  <body ng-app="demo">
+      
+    <div ng-controller="mainController">
+        <input type="text" ng-model="name">
+        <button ng-click='say()'>欢迎 欢迎</button>
+        {{welcome}}
+    </div>
+
+    <script src="lib/angular.min.js"> 
+    </script>
+    <script>   
+     var app=angular.module("app",[]);
+     app.controller('mainController',function($scope){
+         $scope.name="朱佳富"
+         $scope.say=function(){
+             $scope.welcome="欢迎 欢迎"+$scope.name +"!";
+         }
+     })
+     var app=angular.module("demo",['app']);
+    </script>
+      
+  </body>
+</html>
