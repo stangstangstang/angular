@@ -19,12 +19,9 @@
     </div>
   <script src="lib/angular.min.js"></script>
   <script>
-      //创建一个Angularjs模块
       var app=angular.module('app', []);
       app.controller('Maincontroller', function ($scope) {
-       //定义属性text用于绑定ng-model1
        $scope.text='some text';
-       //定义属性boolean用于绑定ng-readonly和on-disabled
        $scope.boolean=true;
       });
   </script>
