@@ -9,7 +9,7 @@
   <div ng-app="demo">
       <div ng-controller="MainController">
       <table>
-          <tr ng-repeat="item in numbers track by $index">
+          <tr ng-repeat=" item in numbers track by $index">
              <td>{{item}}</td>
              <td>$index:{{$index}}</td>
           </tr>
