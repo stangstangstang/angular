@@ -6,6 +6,7 @@
     <title>Angularjs作用域</title>
   </head>
   <body>
+   <!--绑定模块和控制器-->
    <div ng-app="myApp" ng-controller="MainController">
     <input ng-model="name">
     <h1>{{welcome}}</h1>  
@@ -14,9 +15,13 @@
   </div> 
 <script src="lib/angular.min.js"></script>
 <script>
+    //定义模块
     var app=angular.module('myApp',[]);
+    //定义控制器
     app.controller('MainController',function($scope){
+      //定义name属性
       $scope.name="lucy";
+      //定义函数say()
       $scope.say=function() {
           $scope.welconme='welcome:'+$scope.name+'!';
       }

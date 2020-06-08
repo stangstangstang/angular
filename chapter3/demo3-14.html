@@ -7,13 +7,16 @@
   </head>
   <body>
   <div ng-app="app">
+      <!--属性的名字由骆峰命名法的制定命令nySayHello转换而来-->
      <div my-say-hello></div>
 </div>
   <script src="lib/angular.min.js"></script>
 <script>
     var app=angular.module('app',[]);
     app.directive('mySayHello',function () {
+        //返回的对象用于描述这个命令
         return {
+         //定义指令的模板
          template:"<p>hello world</p>",
          replace:false
         }

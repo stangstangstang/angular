@@ -16,7 +16,9 @@
   <script>
       angular.module('myApp',[])
       .controller('mainController', function($scope){
+        //定义属性message,用于插值语法
         $scope.message="等待操作";
+        //定义函数用于绑定ng-change指令
         $scope.myFunc=function() {
           $scope.message="输入框被修改了";
         };

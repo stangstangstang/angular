@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>ng-class</title>
     <style>
+        /*定义样式*/
         .myColor {
             background-color: pink;
         }
@@ -21,6 +22,7 @@
   <body>
     <div ng-app="app">
        <div ng-controller="MainController">
+         <!--绑定样式-->
          <div style="height: 100px;" ng-class="classOptions">
              努力向上
          </div>
@@ -28,8 +30,10 @@
     </div>
   <script src="lib/angular.min.js"></script>
   <script>
+      //创建一个Angularjs模块
       var app=angular.module('app', []);
       app.controller('Maincontroller', function ($scope) {
+       //创建classOptions对象，对已经有的css样式设置是否开启
        $scope.classOptions={
         "myColor":true,
         "myDiv":true,

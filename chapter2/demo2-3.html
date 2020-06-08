@@ -1,29 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>模块与控制器</title>
-</head>
-<body ng-app="app">
+  </head>
+  <body ng-app="app"> 
 
-    <div ng-controller="mainController">
+      <div ng-controller="mainController">
         <input type="text" ng-model="name">
-        <button ng-click='say()'>欢迎欢迎</button>
-        {{welcome}}
-    </div>
+          <button ng-click='say()'>欢迎欢迎</button>
+          {{welcome}}
+      </div>
 
-    <script src="lib/angular.min.js">
-    </script>
+    <script src="lib/angular.min.js"></script>
     <script>
         var app=angular.module("app",[]);
         app.controller('mainController',function($scope){
-            $scope.name="林作栋"
-            $scope.say=function(){
-                $scope.welcome="欢迎  欢迎 "+$scope.name+"!";
-            }
+          $scope.name="朱泽栋"
+          $scope.say=function(){
+              $scope.welcome="欢迎  欢迎  "+$scope.name+"!";
+          }
         })
     </script>
-    
 </body>
 </html>
