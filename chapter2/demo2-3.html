@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>模块与控制器</title>
-</head>
-<body ng-app="app">
+</head> 
+<body ng-app="app"> 
 
     <div ng-controller="mainController">
         <input type="text" ng-model="name">
@@ -18,12 +18,12 @@
     <script>
         var app=angular.module("app",[]);
         app.controller('mainController',function($scope){
-            $scope.name="林作栋"
+            $scope.name="陈枫"
             $scope.say=function(){
                 $scope.welcome="欢迎  欢迎 "+$scope.name+"!";
             }
         })
     </script>
-    
+    1
 </body>
 </html>
