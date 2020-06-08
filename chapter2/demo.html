@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用AngularJS实现自增功能</title>
+</head>
+<body ng-app>
+<input type="button" ng-click="value=value+1" value="增加"/>
+<br/><br/>
+输入框显示内容： <input type="number" ng-model="value"/>
+<br/><br/>
+span标签的显示内容：<span ng-bind="value">我是span标签的内容</span>
+<!--引入angular.js文件-->
+<script src="lib/angular.min.js"></script>
+</body>
+</html>

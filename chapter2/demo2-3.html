@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>模块和控制器</title>
+  </head>
+  <!--指定Angularjs框架在哪个区域内执行-->
+  <body ng-app="app">
+   <div ng-controller="mainController">
+       <span>{{name}}</span>
+   </div>
+   <script src="lib/angular.min.js"></script>
+   <script>
+       //创建第1个参数:Angularjs模块的模块名称
+       //第2个数:该模块所依赖的其他模块
+       var app=angular.module('app',[]);
+       //创建Angularjs控制器
+       //第1个参数:控制器的名称
+       //第2个参数:控制器的回调函数
+       app.controller('mainController',function($scope) {
+           //$scope对象是我们创建出来的Angularjs数据库
+           $scope.name="我是属于name的值";
+       });
+   </script>
+</body>
+</html>
