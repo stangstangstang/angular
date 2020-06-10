@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小胖墩监听</title>
+</head>
+<body>
+<div ng-app='app'>
+    <div ng-app='MainController'>
+        <a href='#!/all'>全部</a>
+        <a href='#!/invite'>邀请中</a>
+        <a href='#!/accept'>已接受</a>
+        <a href='#!/refuse'>已拒绝</a>
+    </div>
+</div>
+<script src='lib/angular.min.js'></script>
+<script>
+    var app=angular.module('app',[])
+    app.controller('MainController',function($scope,$location){
+        //将$location赋值给作用域的locat对象
+        $scope.locat=$location;
+        //$watch 监听的使AngularJS表达式
+        $scope.$watch('locat.path()',function(nnewValue,oldValue){
+            consile.log(newValue);
+        });
+    })
+</script>
+</body>
+</html>

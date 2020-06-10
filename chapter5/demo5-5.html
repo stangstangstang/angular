@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$window服务</title>
+</head>
+<body>
+<div ng-app='myApp'>
+    <div ng-controller='MainController'>
+        <button ng-click="displayAlert('我认输')">打败我</button>
+    </div>
+</div>
+<script src='lib/angular.min.js'></script>
+<script>
+    var app=angular.module('myApp',[]);
+    //将window服务注入控制器
+    app.controller('MainController',function($scope,$window){
+        //定义ng-click绑定的函数
+        $scope.displayAlert=function(msg){
+            $window.alert(msg);
+        }
+    });
+</script>
+</body>
+</html>
