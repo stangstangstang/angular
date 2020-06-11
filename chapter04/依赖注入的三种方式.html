@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="MyController">
+    <button ng-click="sayHello()">调用sayHello</button>
+</div>
+</body>
+<script src="lib/angular.js"></script>
+<script>
+//    1.行内注入
+//    var app=angular.module('myApp', []);
+//    // 创建 value 对象 "temp" 并传递数据
+//    app.value("temp", "Hello");
+//    app.controller('MyController',['$scope','temp',function($scope,temp) {};
+//    $scope.sayHello = function() {
+//        alert(temp);
+//    }
+//    }]);
+
+////  2.显示注入
+//    var app=angular.module('myApp', []);
+//    // 创建 value 对象 "temp" 并传递数据
+//      app.value("temp", "Hello");
+//
+//    var MyController = function($scope, temp) {
+//        $scope.sayHello = function() {
+//            alert(temp);
+//        }
+//    }
+//   MyController.$inject = ['$scope','temp'];
+//    app.controller('MyController', MyController);
+//      3.推断式注入
+    var app=angular.module('myApp', []);
+    // 创建 value 对象 "temp" 并传递数据
+    app.value("temp", "Hello");
+    app.controller('MyController',function($scope,temp) {
+    $scope.sayHello = function() {
+        alert(temp);
+    }
+    });
+</script>
+</html>
