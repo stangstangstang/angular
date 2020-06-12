@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mlist.main">
+<head>
+    <meta charset="UTF-8">
+    <title>电影列表</title>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+</head>
+<body> 
+<div ng-view></div>
+<!--引入AngularJS API-->
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-route.js"></script>
+<!--引入路由文件-->
+<script src="app.js"></script>
+<!--引入详细页面和列表的控制器-->
+<script src="movie_detail/detail_controller.js"></script>
+<script src="movie_list/list_controller.js"></script>
+<!--引入分页配置文件-->
+<script src="config_service.js"></script>
+<!--引入Model层服务-->
+<script src="model_service.js"></script>
+<!--引入jsonp服务-->
+<script src="jsonp_service.js"></script>
+</body>
+</html>
