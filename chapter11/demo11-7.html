@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>IndexedDB基本使用</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+</head>
+<body>
+IndexedDB演示
+</body>
+<script type="text/javascript">
+        // 1.获取对象
+        window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        // 事务对象
+        window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+        // 索引对象
+        window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+        // 游标对象
+        window.IDBCursor = window.IDBCursor || window.webkitIDBCursor || window.msIDBCursor;
+        // 2.定义数据库的基本信息
+        var dbInfo = {
+            dbName: 'indexdbDemo',// 数据库名称
+            dbVersion: 2010, // 数据库版本号，用小数会四舍五入，版本号只能越来越大
+            dbInstance: {},
+        };
+        // 3.创建数据库
+        var dbContent = window.indexedDB.open(dbInfo.dbName, dbInfo.dbVersion);
+        // 如果数据库名称和版本号相同，那么该方法只执行一次，执行完之后自动执行onsuccess方法
+        dbContent.onupgradeneeded=function(e){
+
+            // 4.获取数据库对象
+            var _db = e.target.result;
+            var storeNames = _db.objectStoreNames;// 获取数据库中所有的Object Store
+            if (!storeNames.contains("cart")) {
+                //5.创建一个Object store出来
+                _db.createObjectStore("cart", {
+                    keyPath: "goodsId", // 相当于关系型数据库中的主键,必须有一个属性叫keypath
+                    autoIncrement: true
+                });
+            }
+        }
+        // 连接成功时候的回调函数（数据库的增删改查操作）
+        dbContent.onsuccess=function(e){
+            console.log("连接成功");
+            // 6.增删改查操作，开启事物,每次只能做一个操作
+            var _db = e.target.result;
+            // 调用数据库的transaction方法开启事务，第一参数是Object Store名称的数组,第二个参数是一个事物权限
+            var trans = _db.transaction(["cart"], "readwrite");
+            // 调用事务的Object Store方法获取对象，第一个参数是Object Store名称
+            var store = trans.objectStore("cart");
+            // 新添加的数据中必须有一个字段和keypath中的名称相同，这个字段可以唯一标识这个新数据
+            // 添加数据
+            var req=store.add({
+                goodsId:'1003',
+                prise:12.3,
+                name:"衣服",
+                size:"M",
+                age:99
+            });
+            //数据添加成功的回调函数
+            req.onsuccess=function(e){
+                console.log("数据添加成功") ;
+            }
+            // 数据添加失败的回调函数
+            req.onerror=function(e){
+                console.log("数据添加失败");
+            }
+        }
+        // 连接失败的回调函数
+        dbContent.onerror=function(e){
+         console.log("连接失败");
+        }
+</script>
+</html>

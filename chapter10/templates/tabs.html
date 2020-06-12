@@ -1,0 +1,19 @@
+<ion-tabs class="tabs-icon-only tabs-icon-top ">
+
+  <!--href:选项卡对应的状态   icon-on:ion-tab非高亮图标     icon-off:ion-tab高亮图标-->
+  <ion-tab title="首页" href="#/tabs/home" icon-on="ion-new-home-off" icon-off="ion-new-home">
+    <!--同一状态下有多个ion-nav-view,因此需要给它们设置name属性。并在配制路由的时候对应状态和渲染视图-->
+    <ion-nav-view name="tab-home"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="淘宝" href="#/tabs/taobao" icon-off="ion-new-tf" icon-on="ion-new-tf-off">
+    <ion-nav-view name="tab-taobao"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="好货" icon-off="ion-new-zhemai" icon-on="ion-new-zhemai-off">
+  </ion-tab>
+
+  <ion-tab title="我的" href="#/tabs/user" icon-off="ion-new-user" icon-on="ion-new-user-off">
+    <ion-nav-view name="tab-user"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>

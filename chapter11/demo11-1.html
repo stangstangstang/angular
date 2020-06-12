@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>模态对话框</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+</head>
+<body ng-app="starter" ng-controller="myCtrl">
+<ion-header-bar class="bar-royal">
+    <h2 class="title">联系人</h2>
+    <div class="buttons">
+        <button class="button button-icon ion-person-add" ng-click="modal.show()">
+        </button>
+    </div>
+</ion-header-bar>
+<ion-content>
+    <ion-list>
+        <ion-item ng-repeat="contact in contacts">
+            {{contact.name}}
+        </ion-item>
+    </ion-list>
+</ion-content>
+<script id="templates/modal.html" type="text/ng-template">
+    <ion-modal-view style="height: 100px;">
+        <ion-header-bar class="bar bar-header bar-balanced">
+            <h2 class="title">添加联系人</h2>
+            <button class="button button-clear button-primary" ng-click="modal.hide()">取消</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">请输入姓名：</span>
+                    <input ng-model="user.name" type="text">
+                </label>
+                <button class="button button-full button-balanced" ng-click="addContact(user)">添加</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+</body>
+<script>
+    angular.module('starter', ['ionic'])
+            .controller('myCtrl', function($scope, $ionicModal) {
+                $scope.contacts = [{ name: '小红' }];
+                //使用内联模板创建模态对话框对象
+                $ionicModal.fromTemplateUrl('templates/modal.html', {
+                    scope: $scope
+                }).then(function(modal) {
+                    $scope.modal = modal;
+                });
+                //添加联系人的方法
+                $scope.addContact = function(user) {
+                    $scope.contacts.push({ name: user.name });
+                    $scope.modal.hide();
+                };
+            });
+</script>
+</html>

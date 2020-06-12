@@ -1,0 +1,27 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>背景幕</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+</head>
+<body ng-app="starter"ng-controller="myCtrl">
+    <button class="button button-dark" ng-click="showBackdrop()">
+        显示背景幕
+    </button>
+</body>
+<script type="text/javascript">
+    angular.module('starter', ['ionic'])
+            .controller('myCtrl',function($scope,$ionicBackdrop,$timeout) {
+                    // 显示背景幕
+                $scope.showBackdrop=function(){
+                    $ionicBackdrop.retain();
+                    //2000ms后消失
+                    $timeout(function() {
+                        $ionicBackdrop.release();
+                    }, 2000);
+                }
+            });
+</script>
+</html>

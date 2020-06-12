@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>侧边栏菜单</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+</head>
+<body ng-app="starter" >
+<ion-side-menus>
+    <!-- 中间内容 -->
+    <ion-side-menu-content ng-controller="myCtrl">
+        <ion-header-bar align-title="left" class="bar-positive">
+                <button  class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
+            <h1 class="title" style="text-align: center;">小蓝书</h1>
+                <button  class="button button-icon icon ion-android-cart"></button>
+        </ion-header-bar>
+        <ion-content>
+            商品展示区域
+        </ion-content>
+    </ion-side-menu-content>
+    <!-- 左侧菜单 -->
+    <ion-side-menu side="left" width="180">
+        <header class="bar bar-header bar-stable">
+            <h1 class="title">个人中心</h1>
+        </header>
+        <ion-content class="has-header">
+            <ion-list>
+                <ion-item nav-clear menu-close class="item-avatar" href="#">
+                        <img src="img/demo10-12/abby.jpg">Abby
+                </ion-item>
+                <ion-item nav-clear menu-close href="#">
+                    我的收货地址
+                </ion-item>
+                <ion-item nav-clear menu-close href="#">
+                    账户与安全
+                </ion-item>
+                <ion-item nav-clear menu-close href="#">
+                     隐私
+                </ion-item>
+                <ion-item nav-clear menu-close href="">
+                    通用
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>
+</body>
+<script type="text/javascript">
+    angular.module('starter',['ionic'])
+            .controller('myCtrl',function($scope, $ionicSideMenuDelegate){
+                $scope.toggleLeft = function() {
+                    $ionicSideMenuDelegate.toggleLeft();
+                };
+            });
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>指定列表纵向对齐</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+</head>
+<style>
+    div{
+        border: darkgreen 1px solid;
+    }
+</style>
+<body>
+    <div class="row">
+        <div class="col balanced-bg">默认效果<br>*<br>*<br>*</div>
+        <div class="col">.col</div>
+        <div class="col">.col</div>
+        <div class="col">.col</div>
+    </div>
+    <div class="row">
+        <div class="col balanced-bg">元素对齐<br>*<br>*<br>*</div>
+        <div class="col col-top">.col-top</div>
+        <div class="col col-center">.col-center</div>
+        <div class="col col-bottom">.col-bottom</div>
+    </div>
+    <div class="row row-top">
+        <div class="col balanced-bg">.row-top<br>*<br>*<br>*</div>
+        <div class="col">.col</div>
+        <div class="col">.col</div>
+        <div class="col">.col</div>
+    </div>
+    <div class="row row-center">
+        <div class="col balanced-bg">.row-center<br>*<br>*<br>*</div>
+        <div class="col">.col</div>
+        <div class="col">.col</div>
+        <div class="col">.col</div>
+    </div>
+    <div class="row row-bottom">
+        <div class="col balanced-bg">.row-bottom<br>*<br>*<br>*</div>
+        <div class="col">.col</div>
+        <div class="col">.col</div>
+        <div class="col">.col</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>滚动条:ion-scroll</title>
+      <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+      <script src="lib/ionic/js/ionic.bundle.js"></script>
+      <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+      <ion-header-bar  class="bar-positive">
+          <h4>这里是头部</h4>
+      </ion-header-bar>
+          <ion-content>
+              <div>
+                  <h4 class="title">中国地图展示</h4>
+                  <p style="width: 300px; height: 150px">
+                      中国陆地面积约 960 万平方公里,在世界各国中,仅次于俄罗斯、加拿大,居第三位, 差不多同整个欧洲面积相等。
+                  </p>
+              </div>
+              <ion-scroll direction="xy" scrollbar-y ="true" style="width: 500px; height: 300px">
+                  <div style="width: 1005px; height: 568px; background: url('img/demo10-3/map.jpg') no-repeat"></div>
+              </ion-scroll>
+          </ion-content>
+      <ion-footer-bar class="bar-positive">
+              <h4>这里是底部</h4>
+      </ion-footer-bar>
+  </body>
+  <script>angular.module("starter", ["ionic"]);</script>
+</html>

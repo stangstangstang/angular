@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>下拉刷新:ion-refresh</title>
+      <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+      <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+  </head>
+  <body ng-app="starter">
+      <ion-header-bar  class="bar-positive">
+          <h4>下拉刷新功能演示</h4>
+      </ion-header-bar>
+      <ion-content ng-controller="myCtrl">
+              <!-- 添加下拉刷新的组件 -->
+              <ion-refresher pulling-text="正在刷新页面数据..."
+                      on-refresh="doRefresh()">
+              </ion-refresher>
+          <ul class="list">
+              <li class="item" ng-repeat="item in items">{{item}}</li>
+          </ul>
+          <ion-content>
+  </body>
+  <script>
+      //定义控制器
+      angular.module("starter",["ionic"]).controller("myCtrl",function($scope,$timeout){
+          //初始化数据
+          $scope.items=[];
+          for(var i=1;i<=10;i++){
+              $scope.items.push("首页第"+i+"条数据");
+          }
+          // on-refresh事件调用函数
+          $scope.doRefresh=function () {
+              $timeout(function () {
+              //下来载入数据
+              $scope.items=[];
+              for(var i=1;i<=10;i++){
+                  $scope.items.push("下拉载入第"+i+"条数据");
+              }
+              // 停止广播ion-refresher
+              $scope.$broadcast('scroll.refreshComplete');
+              }, 1000);
+          }
+      });
+  </script>
+</html>

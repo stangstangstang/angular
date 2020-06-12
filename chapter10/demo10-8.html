@@ -1,0 +1,63 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>定制顶部导航栏</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+</head>
+<body ng-app="starter" ng-controller="myCtrl">
+<ion-nav-bar class="bar-positive">
+    <ion-nav-back-button>返回</ion-nav-back-button>
+</ion-nav-bar>
+<ion-nav-view>
+    <i>模板内容将会加载到此处</i>
+</ion-nav-view>
+<script id="templates/page1.html" type="text/ng-template">
+    <ion-view>
+        <ion-nav-title>page1</ion-nav-title>
+        <ion-nav-buttons side="secondary">
+            <a class="button">收藏</a>
+            <a class="button" ui-sref="two">下一页</a>
+        </ion-nav-buttons>
+        <ion-content class="calm-bg">
+            <p>
+                This is page 1.
+            </p>
+        </ion-content>
+    </ion-view>
+</script>
+<script id="templates/page2.html" type="text/ng-template">
+    <ion-view>
+        <ion-content  class="royal-bg">
+            <p>
+                This is page 2.
+            </p>
+            <a class="button" ng-click="setTitle()">设置标题</a>
+        </ion-content>
+    </ion-view>
+</script>
+</body>
+<script type="text/javascript">
+    var app = angular.module('starter', ['ionic']);
+    app.config(function($stateProvider,$urlRouterProvider) {
+        // $stateProvider用来配置状态路由
+        $stateProvider
+                .state('one', {
+                    url: '/one',
+                    templateUrl: 'templates/page1.html'
+                })
+                .state('two', {
+                    url: '/two',
+                    templateUrl: 'templates/page2.html'
+                });
+        // 以上匹配都失败的情况下，进行下面的匹配
+        $urlRouterProvider.otherwise('/one');
+    });
+    app.controller("myCtrl",function($scope,$ionicNavBarDelegate) {
+        $scope.setTitle = function () {
+            $ionicNavBarDelegate.title("我是page2");
+        }
+    });
+</script>
+</html>

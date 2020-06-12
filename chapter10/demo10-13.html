@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>选项卡</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+</head>
+<body ng-app="starter">
+<ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+</ion-nav-bar>
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+    <!-- Dashboard Tab -->
+    <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/dash">
+        <ion-nav-view name="tab-dash"></ion-nav-view>
+    </ion-tab>
+    <!-- Chats Tab -->
+    <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/chats">
+        <ion-nav-view name="tab-chats"></ion-nav-view>
+    </ion-tab>
+    <!-- Account Tab -->
+    <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/account">
+        <ion-nav-view name="tab-account"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>
+<!--模板-->
+<script id="templates/tab-dash.html" type="text/ng-template">
+    <ion-view view-title="Dashboard">
+        <ion-content class="calm-bg"></ion-content>
+    </ion-view>
+</script>
+<script id="templates/tab-chats.html" type="text/ng-template">
+    <ion-view view-title="Chats">
+        <ion-content  class="royal-bg"></ion-content>
+    </ion-view>
+</script>
+<script id="templates/tab-account.html" type="text/ng-template">
+    <ion-view view-title="Account">
+        <ion-content class="energized-bg"></ion-content>
+    </ion-view>
+</script>
+</body>
+<script type="text/javascript">
+   var app=angular.module('starter',['ionic']);
+  app.config(function($stateProvider, $urlRouterProvider) {
+       $stateProvider
+               .state('dash', {
+                   url: '/dash',
+                   views: {
+                       'tab-dash': {
+                           templateUrl: 'templates/tab-dash.html',
+                       }
+                   }
+               })
+               .state('chats', {
+                   url: '/chats',
+                   views: {
+                       'tab-chats': {
+                           templateUrl: 'templates/tab-chats.html',
+                       }
+                   }
+               })
+               .state('account', {
+                   url: '/account',
+                   views: {
+                       'tab-account': {
+                           templateUrl: 'templates/tab-account.html',
+                       }
+                   }
+               });
+       $urlRouterProvider.otherwise('/dash');
+   });
+</script>
+</html>
