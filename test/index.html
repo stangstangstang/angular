@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考试</title>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="mainController">
+        <input type="text" ng-model="guestInfo.name" placeholder="输入姓名">
+        <input type="text" ng-model="guestInfo.phone" placeholder="输入电话">
+        <button ng-click="invite()">邀请</button>
+        <br>
+        {{guestInfo}}
+        <div >
+            <a  href="#!/all">显示全部</a>
+            <a  href="#!/refuse">显示已拒绝</a>
+        </div>
+
+        <div>
+            <table>
+                <thead>
+                    <th>名字</th>
+                    <th>电话</th>
+                </thead>
+                <tbody ng-repeat="guest in guests">
+                    <td>{{guest.name}}</td>
+                    <td>{{guest.phone}}</td>
+                    <td>{{guest.state}}</td>
+                    <td>
+                        <button ng-if="guest.state=='邀请中'" ng-click="guest.refuse()" >拒绝邀请</button>
+                        <button ng-click="remove(guest)" >删除</button>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="js/ModelService.js"></script>
+    <script>
+        var app = angular.module('app', ['nameList.model']);
+        app.controller('mainController', function ($scope, $location, modelService){
+            var state = Guest.ALL;
+            var guestInfo = $scope.guestInfo = {
+                name: '',
+                phone: ''
+            };
+
+            $scope.invite = function () {
+                var msg = modelService.add(guestInfo.name, guestInfo.phone);
+                guestInfo.name = '';
+                guestInfo.phone = '';
+                switch (msg.code) {
+                    case 0:
+                        $scope.guests = modelService.getList(state);
+                        break;
+                }
+            };
+
+            $scope.remove = function (guest) {
+                modelService.remove(guest);
+                $scope.guests = modelService.getList(state);
+            }
+
+            $scope.location = $location;
+            $scope.$watch('location.path()', function (newValue) {
+                switch (newValue) {
+                    case '/all':
+                        state = Guest.ALL;
+                        break;
+
+                    case '/refuse':
+                        state = Guest.REFUSE;
+                        break;
+                }
+                $scope.guests = modelService.getList(state);
+            })
+
+        })
+    </script>
+ 
+</body>
+</html>
+
