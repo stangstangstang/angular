@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邀请</title>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="mainController">
+        <input ng-model="guestInfo.name">
+        <input ng-model="guestInfo.phone">
+        <button ng-click="invite()">邀请</button>
+
+        <div>
+            <table>
+                <thead>
+                    <th>名字</th>
+                    <th>电话</th>
+                </thead>
+
+                <tbody ng-repeat="guest in guests">
+                    <td>{{guest.name}}</td>
+                    <td>{{guest.phone}}</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="js/一二.js"></script>
+
+    <script>
+        var app=angular.module('app',['nameList.model']);
+        app.controller('mainController',function($scope,$location,modelService){
+            var guestInfo = $scope.guestInfo = {
+                name: '',
+                phone: ''
+            };
+
+            $scope.invite=function(){
+                modelService.add(guestInfo.name,guestInfo.phone);
+                $scope.guests=modelService.getList();
+            }
+            $scope.location = $location;
+        })
+    </script>
+
+</body>
+
+</html>
