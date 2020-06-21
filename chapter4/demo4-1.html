@@ -14,7 +14,7 @@
     <script src="lib/angular.min.js"></script>
     <script>
         var demo=angular.module("demo",[]);
-        demo.controller('mainController',function($scope) {
+        demo.controller('mainController',function($scope) { 
           $scope.data="hello world";
           $scope.$watch('data',function(newValue,oldValue) {
               console.log('data has changed',',',newValue,',',oldValue);

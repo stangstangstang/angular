@@ -14,7 +14,7 @@
            var matches=
                  func.toString().match(/^function\s * [^\(] * \(\s * ([^\)] * )\)/m);
                     if (matches && matches.length>1)
-                      return matches[1].replace(/\s+/,'').split(',');
+                      return matches[1].replace(/\s+/,'').split(','); 
                       return[];
        };
       var setFuncParams=function (params) {
