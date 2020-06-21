@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>考试</title>
+</head>
+<body ng-app='app'>
+  <div ng-controller="mainController">
+    <input ng-model="guestInfo.name" placeholder="输入姓名">
+    <input ng-model="guestInfo.phone" placeholder="输入电话">
+    <button ng-click="invite()">邀请</button>
+    <div>
+        <a  href="#!/all">显示全部</a>
+        <a  href="#!/refuse">显示已拒绝</a>
+    </div>
+
+        <div>
+            <table>
+                <thead>
+                    <th>姓名</th>
+                    <th>电话</th>
+                </thead>
+
+                <tbody ng-repeat="guest in guests">
+                    <td>{{guest.name}}</td>
+                    <td>{{guest.phone}}</td>
+                    <td>{{guest.state}}</td>
+                    <td>
+                        <button ng-click="remove(guest)">删除</button>
+                        <button  ng-click="guest.refuse()">拒绝邀请</button>
+                    </td>
+                </tbody> 
+            </table>
+        </div>  
+    </div>
+    
+<script src="lib/angular.min.js"></script>
+<script src="js/ModelService.js"></script>
+
+<script>
+    var app=angular.module('app',['nameList.model']);
+    app.controller('mainController',function($scope,$location,modelService){
+        var state =Guest.ALL;
+        var guestInfo = $scope.guestInfo = {
+                name: '',
+                phone: ''
+        };
+            
+        $scope.invite = function () {
+            var msg = modelService.add(guestInfo.name, guestInfo.phone);
+            guestInfo.name = '';
+            guestInfo.phone = '';
+            switch (msg.code) {
+                    case 0:
+                    $scope.guests = modelService.getList(state); 
+                }
+            };
+        
+        $scope.remove = function (guest) {
+                modelService.remove(guest);
+                $scope.guests = modelService.getList(state);
+            }
+
+        $scope.location = $location;
+        $scope.$watch('location.path()', function (newValue) {
+            switch (newValue) {
+                case '/refuse':
+                    state = Guest.REFUSE;
+                    break;
+                case '/all':
+                    state = Guest.ALL;
+                    break;
+            }
+            $scope.guests = modelService.getList(state);
+        })
+    })
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!-- 邀请名单
+
+<body ng-app="app">
+    <div ng-controller="mainController">
+        <input ng-model="guestInfo.name">
+        <input ng-model="guestInfo.phone">
+        <button ng-click="invite()">邀请</button>
+
+        <div>
+            <table>
+                <thead>
+                    <th>名字</th>
+                    <th>电话</th>
+                </thead>
+
+                <tbody ng-repeat="guest in guests">
+                    <td>{{guest.name}}</td>
+                    <td>{{guest.phone}}</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="js/一二.js"></script>
+
+    <script>
+        var app=angular.module('app',['nameList.model']);
+        app.controller('mainController',function($scope,$location,modelService){
+            var guestInfo = $scope.guestInfo = {
+                name: '',
+                phone: ''
+            };
+
+            $scope.invite=function(){
+                modelService.add(guestInfo.name,guestInfo.phone);
+                $scope.guests=modelService.getList();
+            }
+            $scope.location = $location;
+        })
+    </script>
+
+</body> -->
+
+
+
+<!-- 删除名单
+<body ng-app="app">
+    <div ng-controller="mainController">
+        <input ng-model="guestInfo.name" placeholder="输入姓名">
+        <input ng-model="guestInfo.phone" placeholder="输入电话">
+        <button ng-click="invite()">邀请</button>
+
+        <div>
+            <table>
+                <thead>
+                    <th>名字</th>
+                    <th>电话</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="guest in guests">
+                        <td>{{guest.name}}</td>
+                        <td>{{guest.phone}}</td>
+                        <td>{{guest.state}}</td>
+                        <td><button ng-click="remove(guest)">删除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="js/一二.js"></script>
+
+    <script>
+        var app=angular.module('app',['nameList.model']);
+        app.controller('mainController',function($scope,$location,modelService){
+            var state = Guest.ALL;
+            var guestInfo = $scope.guestInfo = {
+                name: '',
+                phone: ''
+            };
+
+            $scope.invite=function(){
+                modelService.add(guestInfo.name,guestInfo.phone);
+                $scope.guests=modelService.getList();
+            }
+            
+            $scope.remove = function (guest) {
+                modelService.remove(guest);
+                $scope.guests = modelService.getList(state);
+            }
+        })
+    </script>
+</body> -->
+
+
+
+
+<!-- 全部版本三
+<body ng-app='app'>
+    <div ng-controller="mainController">
+        <input ng-model="guestInfo.name" placeholder="输入姓名">
+        <input ng-model="guestInfo.phone" placeholder="输入电话">
+        <button ng-click="invite()">邀请</button>
+        <div>
+            <a  href="#!/all">显示全部</a>
+            <a  href="#!/refuse">显示已拒绝</a>
+        </div>
+
+        <div>
+            <table>
+                <thead>
+                    <th>姓名</th>
+                    <th>电话</th>
+                </thead>
+
+                <tbody ng-repeat="guest in guests">
+                    <td>{{guest.name}}</td>
+                    <td>{{guest.phone}}</td>
+                    <td>{{guest.state}}</td>
+                    <td>
+                        <button ng-click="remove(guest)">删除</button>
+                        <button  ng-click="guest.refuse()">拒绝邀请</button>
+                    </td>
+                </tbody> 
+            </table>
+        </div>  
+    </div>
+    
+<script src="lib/angular.min.js"></script>
+<script src="js/ModelService.js"></script>
+
+<script>
+    var app=angular.module('app',['nameList.model']);
+    app.controller('mainController',function($scope,$location,modelService){
+        var state =Guest.ALL;
+        var guestInfo = $scope.guestInfo = {
+                name: '',
+                phone: ''
+        };
+            
+        $scope.invite = function () {
+            var msg = modelService.add(guestInfo.name, guestInfo.phone);
+            guestInfo.name = '';
+            guestInfo.phone = '';
+            switch (msg.code) {
+                    case 0:
+                    $scope.guests = modelService.getList(state); 
+                }
+            };
+        
+        $scope.remove = function (guest) {
+                modelService.remove(guest);
+                $scope.guests = modelService.getList(state);
+            }
+
+        $scope.location = $location;
+        $scope.$watch('location.path()', function (newValue) {
+            switch (newValue) {
+                case '/refuse':
+                    state = Guest.REFUSE;
+                    break;
+                case '/all':
+                    state = Guest.ALL;
+                    break;
+            }
+            $scope.guests = modelService.getList(state);
+        })
+    })
+</script>
+</body> -->

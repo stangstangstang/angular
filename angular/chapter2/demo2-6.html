@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Angularjs根作用域</title>
+  </head>
+  <body>
+   <div ng-app="demo">
+    <p>*ng-app="demo"作用域显示结果:</p>
+    <span>{{rData}}</span>
+    <span>{{data}}</span>
+    <div ng-controller="MainController"> 
+    <p>*ng-controller="MainController"作用域显示结果:</p>
+    <span>{{rData}}</span>
+    <span>{{data}}</span>   
+   </div>    
+</div> 
+<script src="lib/angular.min.js"></script>
+<script>
+    var demo=angular.module('demo',[]);
+    demo.controller('MainController',function ($scope,$rootScop){
+     $rootScop.rData="hello rootScope";
+     $scope.data='hello scope';
+    });
+</script>
+</body>
+</html>
