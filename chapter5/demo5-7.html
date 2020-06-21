@@ -16,7 +16,7 @@
     </div>
     <script src="lib/angular.min.js"></script>
     <script>   
-        var app=angular.module("app",[]); 
+        var app=angular.module("app",[]);  
         app.controller('MainController',function ($scope,$window) {
           $scope.locat=$location;
           $scope.$watch('locat.pat()',function (newValue,oldValue) {
