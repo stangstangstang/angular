@@ -15,6 +15,8 @@
             <th>年龄</th>
             <th>相关信息</th>
         </tr>
+        <!--ng-repeat会为每一个iem都绑定一个作用域,作用域中除了指定的每一项的数据对象外，
+            还有$index $first $last等数据,这些都是Angularjs自动生成的-->
             <tr ng-repeat="item in users">
               <td>{{item.name}}</td>
               <td>{{item.sex}}</td>
@@ -25,10 +27,11 @@
         </table>
     </div>
 </div>
-  <script src="lib/angular.min.js"></script>
+  <script src="angular.js"></script>
 <script>
     var demo=angular.module('demo',[]);
     demo.controller('MainController',function ($scope){
+    //定义数组users
     $scope.users=[
         {name:"张三",sex:"男",age:24},
         {name:"李茹",sex:"女",age:12},

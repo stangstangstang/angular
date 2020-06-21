@@ -7,10 +7,11 @@
   </head>
   <body ng-app>
        添加 HTML
+       <!--使用ng-init初始化属性myVar,值为false-->
          <input type="checkbox" ng-model="myVar" ng-init="myVar=false">
          <div ng-if="myVar">
              <h1>我来了</h1>
          </div>
-  <script src="lib/angular.min.js"></script>
+  <script src="angular.js"></script>
 </body>
 </html>

@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>使用Angularjs实现计数器</title>
   </head>
+  <!--ng-app指定Angularjs有效范围-->
   <body ng-app>
+   <!--ng-model将值绑定到HTML输入控件-->
    <input type="number" ng-model='value'/>
+   <!--ng-click绑定事件-->
    <input type="button" ng-click="value=value+1" value="增加"/>
-   <script src="lib/angular.min.js"></script>
+   <!--引入angular.js文件-->
+   <script src="angular.js"></script>
 </body>
 </html>
