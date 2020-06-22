@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邀请名单</title>
+</head>
+<body ng-app="nameList">
+<div ng-controller="MainController">
+        <input type="text" ng-model="guestInfo.name" placeholder="输入姓名">
+        <input type="text" ng-model="guestInfo.phone" placeholder="输入电话">
+        <button ng-click="invite()" >邀请</button>
+        <br>
+    <div>
+        <table>
+            <thead>
+                <th>嘉宾姓名</th>
+                <th>嘉宾电话</th>
+            </thead>
+            <tbody ng-repeat="guest in guests">
+                <td>{{guest.name}}</td>
+                <td>{{guest.phone}}</td>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="lib/angular/angular.js"></script>
+<script src="js/ModelService.js"></script>
+<script>
+    var app = angular.module('nameList', ['nameList.model']);
+    app.controller('MainController', function ($scope, $location,modelService) {
+        var guestInfo = $scope.guestInfo = {
+            name: '',
+            phone: ''
+        };
+        $scope.invite = function () {
+            var msg = modelService.add(guestInfo.name, guestInfo.phone);
+            $scope.guests = modelService.getList();
+        };
+        $scope.remove = function () {
+            modelService.remove(guest);
+
+        };
+</script>
+</body>
+</html>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyGuest</title>
+    <title>邀请名单</title>
 </head>
-<body ng-app="app">
+<body ng-app="nameList">
     <div ng-contriller="mainController">
         <input type="text" ng-model="guestInfo.name" placeholder="输入姓名">
         <input type="text" ng-model="guestInfo.phone" placeholder="输入电话">
@@ -25,13 +25,12 @@
             </table>
         </div>
     </div>
-    
+   
     <script src="lib/angular.min.js"></script>
     <script src="js/ModelService.js"></script>
     <script>
         var app=angular.module('app',['nameList.model']);
-        app.controller('mainController', function($scope, $location,
-         modelService){
+        app.controller('mainController', function($scope, $location, modelService){
             var guestInfo = $scope.guestInfo = {
                 name: '',
                 phone: ''
@@ -39,8 +38,11 @@
             $scope.invite = function () {
                 var msg = modelService.add(guestInfo.name, guestInfo.phone);
                 $scope.guests = modelService.getList();
-            }
+            };
+            $scope.remove = function () {
+            modelService.remove(guest);
 
+            };
         })
 
     </script>
