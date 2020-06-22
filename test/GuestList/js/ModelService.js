@@ -10,9 +10,9 @@ function Guest(name, phone) {
 }
 // 定义常量用于记录邀请状态
 Guest.INVITE = '邀请中';
+Guest.ACCEPT = '已接受';
 Guest.REFUSE = '已拒绝';
 Guest.ALL = '全部';
-
 //接受邀请
 Guest.prototype.accept = function () {
     this.state = Guest.ACCEPT;
