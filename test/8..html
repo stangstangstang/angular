@@ -8,10 +8,10 @@
 
 <body ng-app='app'>
     <div ng-controller="mainController">
-        <input type="text" ng-model="guestInfo.name" placeholder="输入姓名">
-        <input type="text" ng-model="guestInfo.phone" placeholder="输入电话">
+        <input type="text" ng-model="guestInfo.name">
+        <input type="text" ng-model="guestInfo.phone">
         <button ng-click="invite()">邀请</button>
-        <div style="padding-top: 30px; padding-bottom: 30px;">
+        <div>
             <a class="col-sm-2 btn btn-success btn-xs" href="#!/all">显示全部</a>
             <a class="col-sm-2 btn btn-success btn-xs" href="#!/refuse">显示已拒绝</a>
         </div>
