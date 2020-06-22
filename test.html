@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>invite page</title>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="mainController">
+        <input type="text" ng-model="guestInfo.name" placeholder="please enter your name">
+        <input type="text" ng-model="guestInfo.phone" placeholder="please enter your phone number">
+        <button ng-click="invite()">invitation</button>
+        <br>
+        {{guestInfo}}
+        <div>
+            <a  href="#!/all">show all</a>
+            <a  href="#!/refuse">show guests of refuse</a>
+        </div>
+
+        <div>
+            <table>
+                <thead>
+                    <th>name</th>
+                    <th>phtone number</th>
+                </thead>
+                <tbody ng-repeat="guest in guests">
+                    <td>{{guest.name}}</td>
+                    <td>{{guest.phone}}</td>
+                    <td>{{guest.state}}</td>
+                    <td>
+                        <button ng-if="guest.state=='inviting'" ng-click="guest.refuse()" >refuse</button>
+                        <button ng-click="remove(guest)">delete guest</button>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="angular.min.js"></script>
+    <script src="ModelService.js"></script>
+    <script>
+        
+
+
+        
+        //从这里调用mainConteroller函数     
+        
+        
+        var app = angular.module('app', ['nameList.model']);
+        app.controller('mainController', function ($scope, $location, modelService){
+            var state = Guest.ALL;
+            var guestInfo = $scope.guestInfo = {
+                name: '',
+                phone: ''
+            };//这里定义guestInfo这个json格式的写法
+
+            $scope.invite = function () {
+                var msg = modelService.add(guestInfo.name, guestInfo.phone);
+                guestInfo.name = '';
+                guestInfo.phone = '';
+                switch (msg.code) {
+                    case 0:
+                        $scope.guests = modelService.getList(state);
+                        break;
+                }
+            };//这里将输入框的信息添加到guestInfo列表里
+
+
+
+            $scope.remove = function (guest) {
+                modelService.remove(guest);
+                $scope.guests = modelService.getList(state);
+            }//判断语句 点击删除按键后执行
+
+
+            $scope.location = $location;
+            $scope.$watch('location.path()', function (newValue) {
+                switch (newValue) {
+                    case '/all'://输出全部邀请过的信息
+                        state = Guest.ALL;
+                        break;
+                    case '/refuse'://判断语句，输出拒绝的的信息
+                        state = Guest.REFUSE;
+                        break;
+                }
+                $scope.guests = modelService.getList(state);
+            })//判断完整合数据
+
+        })
+    </script>
+</body>
+
+</html>
