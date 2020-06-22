@@ -15,16 +15,21 @@
     </div>
   <script src="lib/angular.min.js"></script>
   <script>
+      //创建一个Angularjs模块
       var app=angular.module('app', []);
       app.controller('mainController', function ($scope) {
+       //定义属性ng-click用于绑定span标签上
        $scope.message="等待操作";
+       //定义属性ng-click需要绑定的事件处理函数
        $scope.clickHandler=function (){
         $scope.message='ng-click事件被触发'
        }
       });
+      //定义onclick事件触发调用函数
       function onclickHandler (){
           console.log("onclick事件被触发");
       }
   </script>
+  
 </body>
 </html>

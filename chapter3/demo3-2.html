@@ -9,14 +9,16 @@
     <div ng-app="app">
        <div ng-controller="MainController">
         <div style="height: 100px;" ng-style="myStyle">
-          每天都开心！！！
+          每天都开心
         </div>
        </div> 
     </div>
   <script src="lib/angular.min.js"></script>
   <script>
+      //创建一个Angularjs模块
       var app=angular.module('app', []);
       app.controller('Maincontroller', function ($scope) {
+       //在作用域内定义样式属性myStyle
        $scope.mystyle={
          "background-color":"yellow",
          "width":"100px",
@@ -25,5 +27,6 @@
        }
       });
   </script>
+  
 </body>
 </html>
